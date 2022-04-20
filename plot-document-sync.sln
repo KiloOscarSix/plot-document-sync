@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plot-document-sync", "plot-document-sync\plot-document-sync.csproj", "{0A0F8025-57FE-4CFC-A324-AB45FECB4F47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A0F8025-57FE-4CFC-A324-AB45FECB4F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A0F8025-57FE-4CFC-A324-AB45FECB4F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A0F8025-57FE-4CFC-A324-AB45FECB4F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A0F8025-57FE-4CFC-A324-AB45FECB4F47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
