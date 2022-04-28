@@ -7,7 +7,16 @@ namespace plot_document_sync;
 public static class HandleSpreadsheet
 {
     public const string SpreadsheetId = "1ORdiQiXm-SsRq1xVmK-vZBsyYZ1SE2FeihafNfR5N-g";
-    public static string SheetRange = "Pilot";
+    public const string SheetRange = "Pilot";
+    public const bool OverwriteValues = false;
+
+    private static readonly string[] Characters =
+    {
+        "ANDY",
+        "LIVI",
+        "ENZO"
+    };
+    
     private static int _dialogueIndex = -1;
     private static int _cameraIndex = -1;
     private static int _expressionIndex = -1;
@@ -75,7 +84,23 @@ public static class HandleSpreadsheet
 
 
             // Camera
-
+            foreach (string character in Characters)
+            {
+                try
+                {
+                    if (!documentParagraph.StartsWith(character)
+                        || spreadsheet.Values[rowIndex][_cameraIndex] is not null
+                        && !OverwriteValues) continue;
+                }
+                catch
+                {
+                    // ignored
+                }
+                
+                row[_cameraIndex] = $"PlayerCam looking at {character}";
+                break;
+            }
+            
             // Expression
             string? expression = null;
             Regex expressionRx = new(@"\((.*?)\)", RegexOptions.Compiled);
@@ -87,7 +112,7 @@ public static class HandleSpreadsheet
 
             try
             {
-                if (expression != spreadsheet.Values[rowIndex][_expressionIndex].ToString())
+                if (spreadsheet.Values[rowIndex][_cameraIndex] is null || OverwriteValues)
                 {
                     row[_expressionIndex] = expression;
                 }
@@ -96,7 +121,6 @@ public static class HandleSpreadsheet
             {
                 row[_expressionIndex] = expression;
             }
-
 
             spreadsheet.Values[rowIndex] = row.ToList();
         }
