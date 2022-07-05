@@ -78,7 +78,7 @@ namespace plot_document_sync
                 ApplicationName = ApplicationName
             });
 
-            Timer timer = new ((_) =>
+            Timer __ = new ((_) =>
             {
                 EventLoop(docsService, sheetsService);
             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
