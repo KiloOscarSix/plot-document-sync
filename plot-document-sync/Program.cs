@@ -20,11 +20,12 @@ namespace plot_document_sync
 
         private static UserCredential Login()
         {
+            Console.WriteLine("INFO: Logging into Google OAuth...");
             UserCredential credential;
 
             using (FileStream stream = new("credentials.json", FileMode.Open, FileAccess.Read))
             {
-                const string credPath = "token.json";
+                const string credPath = "creds";
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.FromStream(stream).Secrets,
