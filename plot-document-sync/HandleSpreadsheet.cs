@@ -8,15 +8,24 @@ public static class HandleSpreadsheet
 {
     public const string SpreadsheetId = "1ORdiQiXm-SsRq1xVmK-vZBsyYZ1SE2FeihafNfR5N-g";
     public const string SheetRange = "Pilot";
-    public const bool OverwriteValues = false;
+    private const bool OverwriteValues = false;
 
-    private static readonly string[] Characters =
+    private static readonly string[] Characters = 
     {
-        "ANDY",
-        "LIVI",
-        "ENZO"
+        "River",
+        "Livi",
+        "Enzo",
+        "Andy",
+        // "PLAYER",
+        "Lance",
+        "Angela",
+        "Jason",
+        "Miguel",
+        "Old woman",
+        "Attendant",
+        "Flower seller"
     };
-    
+
     private static int _dialogueIndex = -1;
     private static int _cameraIndex = -1;
     private static int _expressionIndex = -1;
@@ -58,10 +67,10 @@ public static class HandleSpreadsheet
         
         for (int rowIndex = 1; rowIndex <= documentContent.Count; rowIndex++)
         {
-            object[] row = new object[spreadsheet.Values[0].Count];
+            object?[] row = new object[spreadsheet.Values[0].Count];
             try
             {
-                var _ = spreadsheet.Values[rowIndex];
+                IList<object>? _ = spreadsheet.Values[rowIndex];
             }
             catch
             {
@@ -88,7 +97,7 @@ public static class HandleSpreadsheet
             {
                 try
                 {
-                    if (!documentParagraph.StartsWith(character)
+                    if (!documentParagraph.StartsWith(character.ToUpper())
                         || spreadsheet.Values[rowIndex][_cameraIndex] is not null
                         && !OverwriteValues) continue;
                 }
@@ -96,7 +105,7 @@ public static class HandleSpreadsheet
                 {
                     // ignored
                 }
-                
+
                 row[_cameraIndex] = $"PlayerCam looking at {character}";
                 break;
             }
